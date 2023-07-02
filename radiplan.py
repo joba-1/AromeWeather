@@ -24,6 +24,7 @@ def get_weather_meteofrance(lat, lon):
         "latitude": lat,
         "longitude": lon,
         "hourly": "direct_radiation,diffuse_radiation,terrestrial_radiation",
+        # "past_days": 92,
         "timezone": "Europe/Berlin"
     }
     r = requests.get(url, query)
@@ -58,6 +59,7 @@ def put_weather_influx(json_weather):
         line = f"radiation,lat={lat:.2f},lon={lon:.2f} direct={direct},diffuse={diffuse},combined={direct+diffuse},terrestrial={terrestrial} {t_in_hours}"
         r = requests.post(url, params=query, data=line)
         r.raise_for_status()
+    print("InfluxDB updated")
 
 
 def main():
