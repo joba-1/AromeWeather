@@ -55,7 +55,7 @@ def put_weather_influx(json_weather):
         if terrestrial < 0: terrestrial = 0.0
         parsed_t = dp.parse(t)
         t_in_hours = int(parsed_t.timestamp() // 3600)
-        line = f"radiation,lat={lat:.2f},lon={lon:.2f} direct={direct},diffuse={diffuse},terrestrial={terrestrial} {t_in_hours}"
+        line = f"radiation,lat={lat:.2f},lon={lon:.2f} direct={direct},diffuse={diffuse},combined={direct+diffuse},terrestrial={terrestrial} {t_in_hours}"
         r = requests.post(url, params=query, data=line)
         r.raise_for_status()
 
