@@ -1,0 +1,11 @@
+[Unit]
+Description=load latest arome and arpege weather forecasts into an influxdb
+After=network.target influxdb.service
+
+[Service]
+Type=simple
+ExecStart=/home/joachim/bin/aromeweather.sh 48.83,9.11 49.26,8.59 48.08,8.83 47.53,9.97
+User=joachim
+
+[Install]
+WantedBy=multi-user.target
